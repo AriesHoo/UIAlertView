@@ -7,11 +7,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnDismissListener;
+import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.RequiresApi;
 import android.text.Html;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -135,12 +135,17 @@ public class UIAlertView {
         return this;
     }
 
+    public UIAlertView setBackgroundColor(int color) {
+        linearLayoutGroup.setBackgroundColor(color);
+        return this;
+    }
+
     public UIAlertView setBackgroundResource(@DrawableRes int resId) {
         linearLayoutGroup.setBackgroundResource(resId);
         return this;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public UIAlertView setBackground(Drawable background) {
         linearLayoutGroup.setBackground(background);
         return this;
@@ -171,6 +176,20 @@ public class UIAlertView {
         return this;
     }
 
+    public UIAlertView setTitle(int title) {
+        return setTitle(context.getString(title));
+    }
+
+    public UIAlertView setTitleTextColor(int color) {
+        txt_title.setTextColor(color);
+        return this;
+    }
+
+    public UIAlertView setTitleTextColor(ColorStateList color) {
+        txt_title.setTextColor(color);
+        return this;
+    }
+
     /**
      * 设置title textSize参考 TextView.setTextSize(unit, textSize)方法
      *
@@ -181,46 +200,6 @@ public class UIAlertView {
     public UIAlertView setTitleTextSize(int unit, float textSize) {
         txt_title.setTextSize(unit, textSize);
         return this;
-    }
-
-    /**
-     * 设置Message textSize参考 TextView.setTextSize(unit, textSize)方法
-     *
-     * @param unit
-     * @param textSize
-     * @return
-     */
-    public UIAlertView setMessageTextSize(int unit, float textSize) {
-        txt_msg.setTextSize(unit, textSize);
-        return this;
-    }
-
-    /**
-     * 设置message最低高度
-     *
-     * @param minHeight
-     * @return
-     */
-    public UIAlertView setMessageMinHeight(final int minHeight) {
-        txt_msg.setMinimumHeight(minHeight);
-        return this;
-    }
-
-    /**
-     * 设置Button textSize参考 TextView.setTextSize(unit, textSize)方法
-     *
-     * @param unit
-     * @param textSize
-     * @return
-     */
-    public UIAlertView setButtonTextSize(int unit, float textSize) {
-        btn_left.setTextSize(unit, textSize);
-        btn_right.setTextSize(unit, textSize);
-        return this;
-    }
-
-    public UIAlertView setTitle(int title) {
-        return setTitle(context.getString(title));
     }
 
     /**
@@ -262,6 +241,52 @@ public class UIAlertView {
         return setMessage(context.getString(msg));
     }
 
+
+    public UIAlertView setMessageTextColor(int color) {
+        txt_msg.setTextColor(color);
+        return this;
+    }
+
+    public UIAlertView setMessageTextColor(ColorStateList color) {
+        txt_msg.setTextColor(color);
+        return this;
+    }
+
+    /**
+     * 设置Message textSize参考 TextView.setTextSize(unit, textSize)方法
+     *
+     * @param unit
+     * @param textSize
+     * @return
+     */
+    public UIAlertView setMessageTextSize(int unit, float textSize) {
+        txt_msg.setTextSize(unit, textSize);
+        return this;
+    }
+
+    /**
+     * 设置message最低高度
+     *
+     * @param minHeight
+     * @return
+     */
+    public UIAlertView setMessageMinHeight(final int minHeight) {
+        txt_msg.setMinimumHeight(minHeight);
+        return this;
+    }
+
+    /**
+     * 设置Button textSize参考 TextView.setTextSize(unit, textSize)方法
+     *
+     * @param unit
+     * @param textSize
+     * @return
+     */
+    public UIAlertView setButtonTextSize(int unit, float textSize) {
+        btn_left.setTextSize(unit, textSize);
+        btn_right.setTextSize(unit, textSize);
+        return this;
+    }
 
     /**
      * 添加视图
@@ -322,6 +347,16 @@ public class UIAlertView {
         return this;
     }
 
+    public UIAlertView setNegativeButtonTextColor(int color) {
+        btn_left.setTextColor(color);
+        return this;
+    }
+
+    public UIAlertView setNegativeButtonTextColor(ColorStateList color) {
+        btn_left.setTextColor(color);
+        return this;
+    }
+
     /**
      * 修改左边button背景
      *
@@ -337,6 +372,7 @@ public class UIAlertView {
         btn_left.setBackgroundColor(color);
         return this;
     }
+
 
     public UIAlertView setNeutralButton(String text,
                                         final DialogInterface.OnClickListener listener) {
@@ -354,7 +390,38 @@ public class UIAlertView {
         return this;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public UIAlertView setNeutralButton(int text,
+                                        final DialogInterface.OnClickListener listener) {
+        return setNeutralButton(context.getString(text), listener);
+    }
+
+    public UIAlertView setNeutralButtonTextColor(int color) {
+        btn_middle.setTextColor(color);
+        return this;
+    }
+
+    public UIAlertView setNeutralButtonTextColor(ColorStateList color) {
+        btn_middle.setTextColor(color);
+        return this;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public UIAlertView setNeutralButtonBackground(Drawable background) {
+        btn_middle.setBackground(background);
+        return this;
+    }
+
+    public UIAlertView setNeutralButtonBackgroundResource(@DrawableRes int resId) {
+        btn_middle.setBackgroundResource(resId);
+        return this;
+    }
+
+    public UIAlertView setNeutralButtonBackgroundColor(@ColorInt int color) {
+        btn_middle.setBackgroundColor(color);
+        return this;
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public UIAlertView setPositiveButtonBackground(Drawable background) {
         btn_left.setBackground(background);
         return this;
@@ -394,6 +461,16 @@ public class UIAlertView {
     public UIAlertView setNegativeButton(int text,
                                          final DialogInterface.OnClickListener listener) {
         return setNegativeButton(context.getString(text), listener);
+    }
+
+    public UIAlertView setPositiveButtonTextColor(int color) {
+        btn_right.setTextColor(color);
+        return this;
+    }
+
+    public UIAlertView setPositiveButtonTextColor(ColorStateList color) {
+        btn_right.setTextColor(color);
+        return this;
     }
 
     public UIAlertView setPositiveButton(String text,
@@ -510,8 +587,9 @@ public class UIAlertView {
     }
 
     public void dismiss() {
-        if (dialog.isShowing())
+        if (dialog.isShowing()) {
             dialog.cancel();
-        dialog.dismiss();
+            dialog.dismiss();
+        }
     }
 }

@@ -1,1 +1,1 @@
-include ':app', ':UIAlertViewLib'
+include ':app', ':library'
