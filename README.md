@@ -2,7 +2,7 @@
 --------------------------
 ####一、简介：
 
-一个类似iOS 弹出框效果，支持样式自定义
+一个类似iOS 弹出框效果，支持样式自定义(背景、文字颜色、文字大小、单位)
 
 **1.1 Gradle集成**
 
@@ -17,7 +17,7 @@ allprojects {
 
 ```
 dependencies {
-     compile 'com.github.AriesHoo:UIAlertView:1.0.0'
+     compile 'com.github.AriesHoo:UIAlertView:1.0.1'
 }
 ```
 
