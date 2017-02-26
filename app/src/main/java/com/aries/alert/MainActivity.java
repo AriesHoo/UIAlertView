@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
                     uiAlertView = new UIAlertView(MainActivity.this).builder();
                 }
                 uiAlertView.setTitle("UIAlertView");
-                uiAlertView.setMessage("1、本次更新修复多个重大BUG\n2、新增用户反馈接口");
-                //.setMessageMinHeight(100)
+                uiAlertView.setMessage("1、本次更新修复多个重大BUG\n2、新增用户反馈接口", Gravity.LEFT);
                 uiAlertView.setNegativeButton("否定", onAlertClick);
                 uiAlertView.setPositiveButton("肯定", onAlertClick);
                 uiAlertView.setDimAmount(0.5f);
@@ -39,6 +39,55 @@ public class MainActivity extends AppCompatActivity {
                 uiAlertView.setNeutralButtonTextColor(Color.RED);
                 uiAlertView.setPositiveButtonTextColor(Color.BLACK);
                 uiAlertView.setNeutralButton("中性", onAlertClick);
+                uiAlertView.show();
+            }
+        });
+
+        findViewById(R.id.btn_alertNoTitle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uiAlertView = new UIAlertView(MainActivity.this).builder();
+                uiAlertView.setMinHeight(200);
+                uiAlertView.setMessage("测试无Title AlertView");
+                uiAlertView.setNegativeButton("否定", onAlertClick);
+                uiAlertView.setPositiveButton("肯定", onAlertClick);
+                uiAlertView.setDimAmount(0.5f);
+                uiAlertView.setMessageTextColor(Color.RED);
+                uiAlertView.setTitleTextColor(Color.BLUE);
+                uiAlertView.setNegativeButtonTextColor(Color.BLUE);
+                uiAlertView.setNeutralButtonTextColor(Color.RED);
+                uiAlertView.setPositiveButtonTextColor(Color.BLACK);
+                uiAlertView.show();
+            }
+        });
+
+        findViewById(R.id.btn_alertNoMiddle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uiAlertView = new UIAlertView(MainActivity.this).builder();
+                uiAlertView.setMessage("测试无Title 两个按钮 AlertView");
+                uiAlertView.setNegativeButton("否定", onAlertClick);
+                uiAlertView.setPositiveButton("肯定", onAlertClick);
+                uiAlertView.setDimAmount(0.5f);
+                uiAlertView.setTitleTextColor(Color.BLUE);
+                uiAlertView.setNegativeButtonTextColor(Color.BLUE);
+                uiAlertView.setNeutralButtonTextColor(Color.RED);
+                uiAlertView.setPositiveButtonTextColor(Color.BLACK);
+                uiAlertView.show();
+            }
+        });
+
+        findViewById(R.id.btn_alertSingle).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uiAlertView = new UIAlertView(MainActivity.this).builder();
+                uiAlertView.setMessage("测试无Title 单个按钮按钮 AlertView");
+                uiAlertView.setNegativeButton("否定", onAlertClick);
+                uiAlertView.setDimAmount(0.5f);
+                uiAlertView.setTitleTextColor(Color.BLUE);
+                uiAlertView.setNegativeButtonTextColor(Color.BLUE);
+                uiAlertView.setNeutralButtonTextColor(Color.RED);
+                uiAlertView.setPositiveButtonTextColor(Color.BLACK);
                 uiAlertView.show();
             }
         });

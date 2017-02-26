@@ -37,6 +37,7 @@ public class UIAlertView {
     private TextView txt_msg;
     //addView 父容器
     private LinearLayout dialog_Group;
+    private LinearLayout linearLayoutMain;
     private LinearLayout linearLayoutGroup;
     private TextView btn_left;
     private TextView btn_middle;
@@ -54,6 +55,8 @@ public class UIAlertView {
     private int gravity = Gravity.CENTER;
     private Window window;
     private WindowManager.LayoutParams lp;
+
+    private int minHeigh = 0;
 
     public UIAlertView(Context context) {
         this.context = context;
@@ -83,7 +86,7 @@ public class UIAlertView {
         mViewLineRight = view.findViewById(R.id.v_lineRightAlertView);
         mViewLineRight.setVisibility(View.GONE);
         linearLayoutGroup = (LinearLayout) view.findViewById(R.id.lLayout_groupAlertView);
-
+        linearLayoutMain = (LinearLayout) view.findViewById(R.id.lLayout_mainAlertView);
         // 定义Dialog布局和参数
         dialog = new AlertDialog.Builder(context, R.style.AlertViewDialogStyle).create();
         dialog.show();
@@ -98,6 +101,7 @@ public class UIAlertView {
                 dialog_Group.removeAllViews();
             }
         });
+        dialog.dismiss();
         return this;
     }
 
@@ -222,8 +226,15 @@ public class UIAlertView {
                     txt_msg.setMaxWidth((int) context.getResources()
                             .getDimension(R.dimen.alert_max_width));
                 }
+                {
+                    txt_msg.setMaxWidth((int) context.getResources()
+                            .getDimension(R.dimen.alert_max_width_));
+                }
             }
         });
+        int padding = (int) context.getResources().getDimension(R.dimen.alert_dp_padding);
+        txt_msg.setPadding(padding, padding, padding, padding);
+        txt_msg.setGravity(gravity);
         return this;
     }
 
@@ -272,6 +283,24 @@ public class UIAlertView {
      */
     public UIAlertView setMessageMinHeight(final int minHeight) {
         txt_msg.setMinimumHeight(minHeight);
+        return this;
+    }
+
+    /**
+     * @param minHeight
+     * @return
+     */
+    public UIAlertView setMinHeight(final int minHeight) {
+        this.minHeigh = minHeight;
+        linearLayoutMain.setMinimumHeight(minHeight);
+        linearLayoutGroup.setMinimumHeight(minHeight);
+        return this;
+    }
+
+
+    public UIAlertView setMinWidth(final int minWidth) {
+        linearLayoutMain.setMinimumWidth(minWidth);
+        linearLayoutGroup.setMinimumWidth(minWidth);
         return this;
     }
 
@@ -515,10 +544,9 @@ public class UIAlertView {
     private void setLayout() {
         if (showTitle) {
             txt_title.setVisibility(View.VISIBLE);
-        } else {
-            linearLayoutGroup.setGravity(Gravity.CENTER);
-            txt_msg.setGravity(Gravity.CENTER);
         }
+        linearLayoutGroup.setGravity(gravity);
+        txt_msg.setGravity(gravity);
         linearLayoutGroup.setGravity(gravity);
         if (showMsg) {
             txt_msg.setVisibility(View.VISIBLE);
