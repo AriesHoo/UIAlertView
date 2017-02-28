@@ -17,9 +17,10 @@ allprojects {
 
 ```
 dependencies {
-     compile 'com.github.AriesHoo:UIAlertView:1.0.2'
+     compile 'com.github.AriesHoo:UIAlertView:1.0.3'
 }
 ```
 
 ####二、截图预览
 ![](https://github.com/AriesHoo/UIAlertView/blob/master/screenshot/00.png)
+![](https://github.com/AriesHoo/UIAlertView/blob/master/screenshot/01.png)

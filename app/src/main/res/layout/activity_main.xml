@@ -29,4 +29,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="UIAlertView-设置无title单按钮"/>
+
+    <Button
+        android:id="@+id/btn_alertCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UIAlertView-自定义样式"/>
 </LinearLayout>

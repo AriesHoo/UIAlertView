@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (uiAlertView == null) {
-                    uiAlertView = new UIAlertView(MainActivity.this).builder();
+                    uiAlertView = new UIAlertView(MainActivity.this);
                 }
                 uiAlertView.setTitle("UIAlertView");
                 uiAlertView.setMessage("1、本次更新修复多个重大BUG\n2、新增用户反馈接口", Gravity.LEFT);
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_alertNoTitle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiAlertView = new UIAlertView(MainActivity.this).builder();
+                uiAlertView = new UIAlertView(MainActivity.this);
                 uiAlertView.setMinHeight(200);
                 uiAlertView.setMessage("测试无Title AlertView");
                 uiAlertView.setNegativeButton("否定", onAlertClick);
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_alertNoMiddle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiAlertView = new UIAlertView(MainActivity.this).builder();
+                uiAlertView = new UIAlertView(MainActivity.this);
                 uiAlertView.setMessage("测试无Title 两个按钮 AlertView");
                 uiAlertView.setNegativeButton("否定", onAlertClick);
                 uiAlertView.setPositiveButton("肯定", onAlertClick);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_alertSingle).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uiAlertView = new UIAlertView(MainActivity.this).builder();
+                uiAlertView = new UIAlertView(MainActivity.this);
                 uiAlertView.setMessage("测试无Title 单个按钮按钮 AlertView");
                 uiAlertView.setNegativeButton("否定", onAlertClick);
                 uiAlertView.setDimAmount(0.5f);
@@ -88,6 +88,31 @@ public class MainActivity extends AppCompatActivity {
                 uiAlertView.setNegativeButtonTextColor(Color.BLUE);
                 uiAlertView.setNeutralButtonTextColor(Color.RED);
                 uiAlertView.setPositiveButtonTextColor(Color.BLACK);
+                uiAlertView.show();
+            }
+        });
+
+        findViewById(R.id.btn_alertCustom).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (uiAlertView == null) {
+                    uiAlertView = new UIAlertView(MainActivity.this);
+                }
+                uiAlertView.setBackgroundColor(Color.BLUE);
+                uiAlertView.setNegativeButtonBackgroundColor(Color.WHITE);
+                uiAlertView.setNeutralButtonBackgroundColor(Color.WHITE);
+                uiAlertView.setPositiveButtonBackgroundColor(Color.WHITE);
+                uiAlertView.setTitle("UIAlertView");
+                uiAlertView.setMessage("1、本次更新修复多个重大BUG\n2、新增用户反馈接口\n3、增加自定义背景颜色", Gravity.LEFT);
+                uiAlertView.setNegativeButton("否定", onAlertClick);
+                uiAlertView.setPositiveButton("肯定", onAlertClick);
+                uiAlertView.setDimAmount(0.5f);
+                uiAlertView.setMessageTextColor(Color.RED);
+                uiAlertView.setTitleTextColor(Color.BLUE);
+                uiAlertView.setNegativeButtonTextColor(Color.BLUE);
+                uiAlertView.setNeutralButtonTextColor(Color.RED);
+                uiAlertView.setPositiveButtonTextColor(Color.BLACK);
+                uiAlertView.setNeutralButton("中性", onAlertClick);
                 uiAlertView.show();
             }
         });

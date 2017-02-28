@@ -52,17 +52,17 @@ public class UIAlertView {
     private boolean showNegBtn = false;
     private boolean showNeuBtn = false;
 
+    /**
+     * 是否自定义了button样式
+     */
+    private boolean isCustomButtonStyle = false;
+
     private int gravity = Gravity.CENTER;
     private Window window;
     private WindowManager.LayoutParams lp;
 
-    private int minHeigh = 0;
-
     public UIAlertView(Context context) {
         this.context = context;
-    }
-
-    public UIAlertView builder() {
         // 获取Dialog布局
         View view = LayoutInflater.from(context).inflate(
                 R.layout.layout_alert_view, null);
@@ -102,6 +102,10 @@ public class UIAlertView {
             }
         });
         dialog.dismiss();
+    }
+
+    public UIAlertView builder() {
+
         return this;
     }
 
@@ -140,18 +144,18 @@ public class UIAlertView {
     }
 
     public UIAlertView setBackgroundColor(int color) {
-        linearLayoutGroup.setBackgroundColor(color);
+        linearLayoutMain.setBackgroundColor(color);
         return this;
     }
 
     public UIAlertView setBackgroundResource(@DrawableRes int resId) {
-        linearLayoutGroup.setBackgroundResource(resId);
+        linearLayoutMain.setBackgroundResource(resId);
         return this;
     }
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public UIAlertView setBackground(Drawable background) {
-        linearLayoutGroup.setBackground(background);
+        linearLayoutMain.setBackground(background);
         return this;
     }
 
@@ -291,7 +295,6 @@ public class UIAlertView {
      * @return
      */
     public UIAlertView setMinHeight(final int minHeight) {
-        this.minHeigh = minHeight;
         linearLayoutMain.setMinimumHeight(minHeight);
         linearLayoutGroup.setMinimumHeight(minHeight);
         return this;
@@ -369,8 +372,27 @@ public class UIAlertView {
         return this;
     }
 
+    /**
+     * 修改左边button背景
+     *
+     * @param resId
+     * @return
+     */
+    public UIAlertView setNegativeButtonBackgroundResource(@DrawableRes int resId) {
+        isCustomButtonStyle = true;
+        btn_left.setBackgroundResource(resId);
+        return this;
+    }
+
+    public UIAlertView setNegativeButtonBackgroundColor(@ColorInt int color) {
+        isCustomButtonStyle = true;
+        btn_left.setBackgroundColor(color);
+        return this;
+    }
+
     public UIAlertView setNegativeButtonBackground(Drawable background) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            isCustomButtonStyle = true;
             btn_left.setBackground(background);
         }
         return this;
@@ -385,23 +407,6 @@ public class UIAlertView {
         btn_left.setTextColor(color);
         return this;
     }
-
-    /**
-     * 修改左边button背景
-     *
-     * @param resId
-     * @return
-     */
-    public UIAlertView setNegativeButtonBackgroundResource(@DrawableRes int resId) {
-        btn_left.setBackgroundResource(resId);
-        return this;
-    }
-
-    public UIAlertView setNegativeButtonBackgroundColor(@ColorInt int color) {
-        btn_left.setBackgroundColor(color);
-        return this;
-    }
-
 
     public UIAlertView setNeutralButton(String text,
                                         final DialogInterface.OnClickListener listener) {
@@ -434,25 +439,42 @@ public class UIAlertView {
         return this;
     }
 
+    /**
+     * 设置中间按钮样式
+     *
+     * @param background
+     * @return
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public UIAlertView setNeutralButtonBackground(Drawable background) {
+        isCustomButtonStyle = true;
         btn_middle.setBackground(background);
         return this;
     }
 
     public UIAlertView setNeutralButtonBackgroundResource(@DrawableRes int resId) {
+        isCustomButtonStyle = true;
         btn_middle.setBackgroundResource(resId);
         return this;
     }
 
     public UIAlertView setNeutralButtonBackgroundColor(@ColorInt int color) {
+        isCustomButtonStyle = true;
         btn_middle.setBackgroundColor(color);
         return this;
     }
 
+
+    /**
+     * 设置右边按钮样式
+     *
+     * @param background
+     * @return
+     */
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public UIAlertView setPositiveButtonBackground(Drawable background) {
-        btn_left.setBackground(background);
+        isCustomButtonStyle = true;
+        btn_right.setBackground(background);
         return this;
     }
 
@@ -463,12 +485,14 @@ public class UIAlertView {
      * @return
      */
     public UIAlertView setPositiveButtonBackgroundResource(@DrawableRes int resId) {
-        btn_left.setBackgroundResource(resId);
+        isCustomButtonStyle = true;
+        btn_right.setBackgroundResource(resId);
         return this;
     }
 
     public UIAlertView setPositiveButtonBackgroundColor(@ColorInt int color) {
-        btn_left.setBackgroundColor(color);
+        isCustomButtonStyle = true;
+        btn_right.setBackgroundColor(color);
         return this;
     }
 
@@ -556,6 +580,18 @@ public class UIAlertView {
         }
         if (showPosBtn || showNegBtn || showNeuBtn) {//都没有
             mViewLineHorizontal.setVisibility(View.VISIBLE);
+        }
+        if (isCustomButtonStyle) {//设置过自定义样式不再控制
+            if (showNegBtn) {
+                btn_left.setVisibility(View.VISIBLE);
+            }
+            if (showNeuBtn) {
+                btn_middle.setVisibility(View.VISIBLE);
+            }
+            if (showPosBtn) {
+                btn_right.setVisibility(View.VISIBLE);
+            }
+            return;
         }
         if (!showPosBtn && showNegBtn && !showNeuBtn) {//左一个
             btn_left.setVisibility(View.VISIBLE);
