@@ -1,8 +1,9 @@
 # UIAlertView
 --------------------------
 ### 一、简介：
+Android 一个类似iOS 弹出框效果，支持样式自定义;更全常见UI库参看 [UIWidget](https://github.com/AriesHoo/UIWidget)
 
-一个类似iOS 弹出框效果，支持样式自定义(背景、文字颜色、文字大小、单位)
+注:如无必须使用iOS效果建议使用Android Material Design 风格AlertDialog
 
 [[Sample PC Download]](https://github.com/AriesHoo/UIAlertView/blob/master/apk/sample.apk)
 
