@@ -5,6 +5,8 @@ Android 一个类似iOS 弹出框效果，支持样式自定义;更全常见UI�
 
 注:如无必须使用iOS效果建议使用Android Material Design 风格AlertDialog
 
+## 说明1.1.0以后版本UIWidget维护，不再做版本更新
+
 [[Sample PC Download]](https://github.com/AriesHoo/UIAlertView/blob/master/apk/sample.apk)
 
 [[Sample Mobile Download]](http://fir.im/r84v)
